@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import './App.css'
 
 function App() {
+  const [number, setNumber] = useState("");
+  const [square, setSquare] = useState("");
+  console.log(number)
+    useEffect(() => {
+        const respond = number**2;
+        if (respond !== 0){
+          setSquare(respond)
+        }
+    }, [number])
+
+ if (number**2 === square){
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input type="number" value={number} onChange={e => setNumber(e.target.value)} />
+      {square && <p>The square of {number} is {square}</p>}
     </div>
   );
+}else{
+  return (
+    <div className="App">
+      <input type="number" value={number} onChange={e => setNumber(e.target.value)} />
+    </div>
+  );
+  }
 }
+
 
 export default App;
